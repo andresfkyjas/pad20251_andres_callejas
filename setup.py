@@ -12,4 +12,4 @@ setup(
         "openpyxl",
         "requests"
     ]
-    
+) 
