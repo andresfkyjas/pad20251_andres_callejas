@@ -6,7 +6,11 @@ class Ingestion:
         self.ruta_static = "src/ibgd/static/"
 
     def obtener_datos_api(self,url="",params={}):
-        url = "{}/{}/{}/".format(url,params["coin"],params["method"])
+        if len(parametros)==0:
+            url = "{}/{}/{}/".format(url,params["coin"],params["method"])
+        else:
+            url = url
+            
         try:
             response = requests.get(url)
             response.raise_for_status()
@@ -86,8 +90,10 @@ class Ingestion:
     
 ingestion = Ingestion()
 parametros = {"coin":"BTC","method":"ticker"}
-url = "https://www.mercadobitcoin.net/api"
-datos = ingestion.obtener_datos_api(url=url, params=parametros)
+#url = "https://www.mercadobitcoin.net/api"
+url= "https://www.amiiboapi.com/api/amiibo/?name=mario"
+#datos = ingestion.obtener_datos_api(url=url, params=parametros)
+datos = ingestion.obtener_datos_api(url=url)
 if len(datos)>0:
     print(json.dumps(datos,indent=4))
 else:

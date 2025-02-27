@@ -2,8 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
 src/ibgd/static/db/*.sqlite3
-src/ibgd/static/db/*.json
+
+src/ibgd/static/db
+
 # C extensions
 *.so
 
