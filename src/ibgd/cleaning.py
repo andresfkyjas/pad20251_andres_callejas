@@ -1,11 +1,12 @@
 import requests
 import json
+import pandas as pd
 
 class Ingestion:
     def __init__(self):
         self.ruta_static = "src/ibgd/static/"
 
-    def obtener_datos_api(self,url="",params={}):
+    def obtener_db(self,url="",params={}):
         if len(parametros)==0:
             url = "{}/{}/{}/".format(url,params["coin"],params["method"])
         else:
@@ -14,17 +15,17 @@ class Ingestion:
         try:
             response = requests.get(url)
             response.raise_for_status()
-            return response.json()
+            return pd.DataFrame(response.json()["amiibo"])
         except requests.exceptions.RequestException as error:
             print(error)
             return {}
-    
-    def guardar_datos(self,datos={},nombre_archivo="ingestion"):
-        with open("{}db/{}.json".format(self.ruta_static,nombre_archivo), "w") as archivo:
-            json.dump(datos,archivo)
-        
-    def guardar_db(self,datos={},nombre_archivo="ingestion"):
+    def preprocesamiento(self,df=None):
         pass
+        #null
+
+    def limpieza_nan(self,df=None):
+        pass
+
 
     def validar_autoria(self, datos, nombre_archivo="ingestion"):
         """
@@ -93,11 +94,13 @@ parametros = {"coin":"BTC","method":"ticker"}
 #url = "https://www.mercadobitcoin.net/api"
 url= "https://www.amiiboapi.com/api/amiibo/?name=mario"
 #datos = ingestion.obtener_datos_api(url=url, params=parametros)
-datos = ingestion.obtener_datos_api(url=url)
-if len(datos)>0:
-    print(json.dumps(datos,indent=4))
+df_datos = ingestion.obtener_db(url=url)
+df_datos["pais"]="NULL"
+df_datos.to_csv("datos_db.csv")
+if len(df_datos)>0:
+    print(df_datos.head())
 else:
     print("no se obtubo la consulta")
-ingestion.guardar_datos(datos=datos,nombre_archivo="ingestion")
-ingestion.validar_autoria(datos=datos,nombre_archivo="ingestion")
+#ingestion.guardar_datos(datos=datos,nombre_archivo="ingestion")
+#ingestion.validar_autoria(datos=datos,nombre_archivo="ingestion")
 
