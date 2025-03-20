@@ -31,11 +31,12 @@ jobs:
         run: python src/ibgd/ingestion.py 
       - name: paso6 - Ejecutar script ACTIVIDAD 2
         run: python src/ibgd/cleaning.py 
-
+      - name: paso7 - Ejecutar script ACTIVIDAD 3
+        run: python src/ibgd/transformation.py 
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: entrega actividad 1
+          commit_message: entrega actividad 1, 2 y 3
           commit_user_name: Andres Callejas [GitHub Actions]
           commit_user_email: andres.callejas@iudigital.edu.co
           commit_author: Andres Callejas <andres.callejas@iudigital.edu.co>
