@@ -27,9 +27,9 @@ class Transformation:
         return True
 
     def ejecucion(self):
-        df1 =self.dataset_1()
-        df2 = self.dataset_1()
-        df3 = self.dataset_1(df1,df2)
+        df1 = self.dataset_1()
+        df2 = self.dataset_2()
+        df3 = self.join_dataset(df1,df2)
         if self.auditoria(df3):
             print("Termino actividad 3")
 
