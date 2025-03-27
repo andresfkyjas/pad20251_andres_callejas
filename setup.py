@@ -10,6 +10,9 @@ setup(
     install_requires=[
         "pandas",
         "openpyxl",
-        "requests"
+        "requests",
+        "scikit-learn",
+        "matplotlib",
+        "joblib"
     ]
 ) 
