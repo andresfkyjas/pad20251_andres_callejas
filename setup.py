@@ -13,6 +13,9 @@ setup(
         "requests",
         "scikit-learn",
         "matplotlib",
-        "joblib"
+        "joblib",
+        "python-dotenv",
+        "openai==0.28",
+        "httpx"
     ]
 ) 
